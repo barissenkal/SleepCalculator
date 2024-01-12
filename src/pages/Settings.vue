@@ -5,15 +5,18 @@ import RangedNumberInput from "../components/input/RangedNumber.vue";
 import TimeInput from "../components/input/Time.vue";
 import type { SettingsObject } from "../utils/settings";
 import settings from "../utils/settings";
+import { updateFormatters } from "../utils/format";
 
 const currentSettings = ref<SettingsObject>(settings.getSettings());
 
 function saveButton() {
   // console.log("currentSettings", JSON.stringify(currentSettings.value));
   settings.updateSettings(currentSettings.value);
+  updateFormatters();
 }
 function resetButton() {
   settings.resetSettings();
+  updateFormatters();
   currentSettings.value = settings.getSettings();
 }
 </script>
