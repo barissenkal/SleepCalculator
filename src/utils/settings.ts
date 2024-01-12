@@ -71,11 +71,9 @@ export default {
     _saveSettings();
   },
   resetSetting(key: SettingKeys) {
-    this.setSetting(key, DEFAULT_SETTINGS[key]);
+    this.updateSettings({ [key]: DEFAULT_SETTINGS[key] });
   },
   resetSettings() {
-    tempSettings = {
-      ...DEFAULT_SETTINGS,
-    };
+    this.updateSettings(DEFAULT_SETTINGS);
   },
 };
