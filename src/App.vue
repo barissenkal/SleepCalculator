@@ -16,6 +16,8 @@
 </template>
 
 <style lang="scss" scoped>
+@import "./variables.scss";
+
 .nav-bar {
   position: fixed;
   bottom: 0;
@@ -26,8 +28,8 @@
   align-items: center;
   padding: 10px 0;
   padding-bottom: max(10px, env(safe-area-inset-bottom));
-  box-shadow: 0px -2px 5px rgba(0, 0, 0, 0.1);
-  background-color: #111; // TODO: move colors to a constants file
+  box-shadow: 0px -2px 5px rgba($black, 0.1);
+  background-color: $nav-background;
   .nav-item {
     text-align: center;
     text-decoration: none;
@@ -35,17 +37,22 @@
     flex-direction: column;
     align-items: center;
     a {
-      color: #ddd;
+      color: $ghost-white;
+      &.router-link-active {
+        color: $soft-white;
+      }
     }
   }
 }
 @media (prefers-color-scheme: light) {
   .nav-bar {
-    // TODO: move colors to a constants file
-    background-color: #ddd;
+    background-color: invert($nav-background);
     .nav-item {
       a {
-        color: #111;
+        color: $soft-black;
+        &.router-link-active {
+          color: $black;
+        }
       }
     }
   }
