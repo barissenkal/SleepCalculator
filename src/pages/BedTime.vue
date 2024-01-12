@@ -1,11 +1,11 @@
 <script setup lang="ts">
+import { ref, watch } from "vue";
 import {
   getGoToBedTimes,
   getTimeString,
   parseTimeString,
 } from "../utils/calculation";
 import CycleTime from "../components/CycleTime.vue";
-import { ref, watch } from "vue";
 import settings from "../utils/settings";
 
 const { IdealWakeUp } = settings.getSettings();

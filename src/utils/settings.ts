@@ -10,7 +10,7 @@ enum SettingKeys {
   BestCycle = "BestCycle",
 }
 
-type SettingsObject = {
+export type SettingsObject = {
   [SettingKeys.TimeToFallAsleep]: number;
   [SettingKeys.SleepCycleLength]: number;
   [SettingKeys.CycleCountStart]: number;

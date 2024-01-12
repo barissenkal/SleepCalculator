@@ -4,7 +4,7 @@ import settings from "../utils/settings";
 import { formatTime } from "../utils/format";
 import { PropType } from "vue";
 
-const prop = defineProps({
+const props = defineProps({
   item: {
     type: Object as PropType<CycleItem>,
     required: true,
@@ -15,9 +15,9 @@ const BestCycle = settings.getSettings().BestCycle;
 </script>
 
 <template>
-  <div class="cycleTime" :class="{ best: prop.item.cycle == BestCycle }">
-    <div class="cycle">{{ prop.item.cycle }} CYCLES</div>
-    <div class="date">{{ formatTime(prop.item.date) }}</div>
+  <div class="cycleTime" :class="{ best: props.item.cycle == BestCycle }">
+    <div class="cycle">{{ props.item.cycle }} CYCLES</div>
+    <div class="date">{{ formatTime(props.item.date) }}</div>
   </div>
 </template>
 
