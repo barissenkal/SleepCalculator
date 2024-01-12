@@ -23,6 +23,11 @@ export default defineConfig({
         background_color: '#000',
         includeAssets: ['splash.png'],
       },
+      workbox: {
+        clientsClaim: true,
+        skipWaiting: true,
+        cleanupOutdatedCaches: true,
+      }
     }),
   ],
 });
