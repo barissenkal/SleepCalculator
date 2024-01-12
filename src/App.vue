@@ -22,12 +22,13 @@
   position: fixed;
   bottom: 0;
   left: 0;
-  width: 100%;
+  right: 0;
+  width: 100vw;
   display: flex;
   justify-content: space-around;
   align-items: center;
   padding: 10px 0;
-  padding-bottom: max(10px, env(safe-area-inset-bottom));
+  padding-bottom: $nav-bar-padding-bottom;
   box-shadow: 0px -2px 5px rgba($black, 0.1);
   background-color: $nav-background;
   .nav-item {

@@ -27,7 +27,7 @@ a:hover {
 body {
   margin: 0;
   display: flex;
-  place-items: center;
+  place-items: flex-start;
   min-width: 320px;
   min-height: 100vh;
   overflow: hidden;
@@ -62,10 +62,9 @@ button:focus-visible {
 }
 
 #app {
-  max-width: 1280px;
   margin: 0 auto;
-  padding: 2rem;
-  padding-bottom: calc(2rem + 44px + max(10px, env(safe-area-inset-bottom)));
+  padding-top: env(safe-area-inset-top);
+  padding-bottom: calc(2rem + $nav-bar-height + $nav-bar-padding-bottom);
   text-align: center;
   -webkit-overflow-scrolling: touch;
 }

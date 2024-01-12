@@ -1,0 +1,63 @@
+<script setup lang="ts">
+import type { WakeUpTime } from "../enums";
+import settings from "../utils/settings";
+import { formatTime } from "../utils/format";
+import { PropType } from "vue";
+
+const prop = defineProps({
+  item: {
+    type: Object as PropType<WakeUpTime>,
+    required: true,
+  },
+});
+
+const BestCycle = settings.getSettings().BestCycle;
+</script>
+
+<template>
+  <div class="wakeUpTime" :class="{ best: prop.item.cycle == BestCycle }">
+    <div class="cycle">{{ prop.item.cycle }} CYCLES</div>
+    <div class="date">{{ formatTime(prop.item.date) }}</div>
+  </div>
+</template>
+
+<style lang="scss" scoped>
+@import "../variables.scss";
+
+$side-padding: 8px;
+$vertical-padding: 32px;
+
+.wakeUpTime {
+  width: 100vw;
+  text-align: start;
+  .cycle {
+    font-size: 1em;
+    line-height: 1em;
+    padding: $side-padding;
+  }
+  .date {
+    font-size: 3em;
+    line-height: 1em;
+    padding: 0 $side-padding;
+    font-family: monospace;
+    font-weight: bold;
+  }
+  &:not(:first-child) {
+    padding-top: $vertical-padding;
+  }
+  &.best {
+    color: $white;
+    .cycle {
+      font-weight: bold;
+    }
+  }
+}
+
+@media (prefers-color-scheme: light) {
+  .wakeUpTime {
+    &.best {
+      color: $black;
+    }
+  }
+}
+</style>

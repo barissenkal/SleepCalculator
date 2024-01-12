@@ -7,4 +7,10 @@ $soft-black: rgba($black, 0.7);
 $ghost-white: rgba($white, 0.5);
 $ghost-black: rgba($black, 0.5);
 
+$invisible-white: rgba($white, 0.2);
+$invisible-black: rgba($black, 0.2);
+
 $nav-background: #111;
+
+$nav-bar-height: 34px; // without bottom padding.
+$nav-bar-padding-bottom: max(10px, env(safe-area-inset-bottom));
