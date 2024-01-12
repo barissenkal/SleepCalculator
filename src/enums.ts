@@ -1,4 +1,4 @@
-export interface WakeUpTime {
+export interface CycleItem {
   cycle: number;
   date: Date;
 }

@@ -1,12 +1,12 @@
 <script setup lang="ts">
-import type { WakeUpTime } from "../enums";
+import type { CycleItem } from "../enums";
 import settings from "../utils/settings";
 import { formatTime } from "../utils/format";
 import { PropType } from "vue";
 
 const prop = defineProps({
   item: {
-    type: Object as PropType<WakeUpTime>,
+    type: Object as PropType<CycleItem>,
     required: true,
   },
 });
@@ -15,7 +15,7 @@ const BestCycle = settings.getSettings().BestCycle;
 </script>
 
 <template>
-  <div class="wakeUpTime" :class="{ best: prop.item.cycle == BestCycle }">
+  <div class="cycleTime" :class="{ best: prop.item.cycle == BestCycle }">
     <div class="cycle">{{ prop.item.cycle }} CYCLES</div>
     <div class="date">{{ formatTime(prop.item.date) }}</div>
   </div>
@@ -27,7 +27,7 @@ const BestCycle = settings.getSettings().BestCycle;
 $side-padding: 8px;
 $vertical-padding: 32px;
 
-.wakeUpTime {
+.cycleTime {
   width: 100vw;
   text-align: start;
   .cycle {
@@ -54,7 +54,7 @@ $vertical-padding: 32px;
 }
 
 @media (prefers-color-scheme: light) {
-  .wakeUpTime {
+  .cycleTime {
     &.best {
       color: $black;
     }
