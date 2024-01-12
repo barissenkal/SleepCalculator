@@ -24,7 +24,8 @@
   display: flex;
   justify-content: space-around;
   align-items: center;
-  padding: 10px 0 calc(10px + env(safe-area-inset-bottom));
+  padding: 10px 0;
+  padding-bottom: max(10px, env(safe-area-inset-bottom));
   box-shadow: 0px -2px 5px rgba(0, 0, 0, 0.1);
   background-color: #111; // TODO: move colors to a constants file
   .nav-item {
