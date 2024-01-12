@@ -12,7 +12,7 @@ export default defineConfig({
     vue(),
     VitePWA({
       registerType: "autoUpdate",
-      scope: "/SleepCalculator",
+      scope: "/SleepCalculator/",
       manifest: {
         name: "Sleep Calculator",
         orientation: "portrait",
