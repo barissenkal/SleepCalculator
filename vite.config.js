@@ -16,8 +16,8 @@ export default defineConfig({
       manifest: {
         name: "Sleep Calculator",
         orientation: "portrait",
-        id: "/",
-        start_url: "/",
+        id: "/SleepCalculator",
+        start_url: "/SleepCalculator",
         display: "standalone",
         theme_color: '#000',
         background_color: '#000',
