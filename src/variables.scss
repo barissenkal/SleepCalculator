@@ -1,14 +1,18 @@
 $black: #000000;
 $white: #ffffff;
 
-$soft-white: rgba($white, 0.7);
-$soft-black: rgba($black, 0.7);
+$soft-transparency: 0.7;
+$ghost-transparency: 0.5;
+$invisible-transparency: 0.2;
 
-$ghost-white: rgba($white, 0.5);
-$ghost-black: rgba($black, 0.5);
+$soft-white: rgba($white, $soft-transparency);
+$soft-black: rgba($black, $soft-transparency);
 
-$invisible-white: rgba($white, 0.2);
-$invisible-black: rgba($black, 0.2);
+$ghost-white: rgba($white, $ghost-transparency);
+$ghost-black: rgba($black, $ghost-transparency);
+
+$invisible-white: rgba($white, $invisible-transparency);
+$invisible-black: rgba($black, $invisible-transparency);
 
 $nav-background: #111;
 

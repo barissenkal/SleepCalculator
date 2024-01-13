@@ -9,6 +9,10 @@ const props = defineProps({
     type: Object as PropType<CycleItem>,
     required: true,
   },
+  unavailable: {
+    type: Boolean,
+    default: false,
+  },
 });
 
 const { BestCycle, CycleClock, SleepCycleLength } = settings.getSettings();
@@ -19,7 +23,10 @@ function getLengthText(cycle: number) {
 </script>
 
 <template>
-  <div class="cycleTime" :class="{ best: props.item.cycle == BestCycle }">
+  <div
+    class="cycleTime"
+    :class="{ best: props.item.cycle == BestCycle, unavailable: unavailable }"
+  >
     <div class="cycle">
       {{ props.item.cycle }} CYCLES
       <span v-if="CycleClock">({{ getLengthText(props.item.cycle) }})</span>
@@ -57,6 +64,13 @@ $vertical-padding: 32px;
     .cycle {
       font-weight: bold;
     }
+  }
+  &.unavailable {
+    opacity: 0.25;
+    color: rgba(red, $soft-transparency);
+  }
+  &.best.unavailable {
+    color: red;
   }
 }
 

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, watch } from "vue";
+import { onMounted, onUnmounted, ref, watch } from "vue";
 import {
   getGoToBedTimes,
   getTimeString,
@@ -10,6 +10,7 @@ import settings from "../utils/settings";
 
 const { IdealWakeUp } = settings.getSettings();
 
+const now = ref<Date>(new Date());
 const wakeUpTimeString = ref<string>(getTimeString(IdealWakeUp));
 
 let bedTimes = getGoToBedTimes(IdealWakeUp);
@@ -18,12 +19,27 @@ watch(wakeUpTimeString, (dateString) => {
   const totalMinutes = parseTimeString(dateString);
   bedTimes = getGoToBedTimes(totalMinutes);
 });
+
+let intervalTimerID = null;
+onMounted(() => {
+  // @ts-ignore
+  intervalTimerID = setInterval(() => {
+    now.value = new Date();
+  }, 1000);
+});
+onUnmounted(() => {
+  if (intervalTimerID) clearInterval(intervalTimerID);
+});
 </script>
 
 <template>
   <h1 class="header">Time to Go to Bed</h1>
   <div class="bedTimes">
-    <CycleTime v-for="item in bedTimes" :item="item"></CycleTime>
+    <CycleTime
+      v-for="item in bedTimes"
+      :item="item"
+      :unavailable="item.date < now"
+    ></CycleTime>
   </div>
   <div class="datePickerBar">
     <input type="time" v-model="wakeUpTimeString" />
