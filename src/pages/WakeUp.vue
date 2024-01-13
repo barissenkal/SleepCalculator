@@ -18,7 +18,7 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <h1 class="header">Time to Wake Up</h1>
+  <h1>Time to Wake Up</h1>
   <div class="wakeUpTimes">
     <CycleTime v-for="item in wakeUpTimes" :item="item"></CycleTime>
   </div>
@@ -26,12 +26,4 @@ onUnmounted(() => {
 
 <style lang="scss" scoped>
 @import "../variables.scss";
-
-$side-padding: 8px;
-
-.header {
-  padding: 0 $side-padding;
-  text-align: start;
-  font-size: 40px;
-}
 </style>

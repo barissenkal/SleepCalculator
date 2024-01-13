@@ -36,6 +36,9 @@ body {
 h1 {
   font-size: 3.2em;
   line-height: 1.1;
+  padding: 0 $side-padding;
+  text-align: start;
+  font-size: 40px;
 }
 
 button {
@@ -57,8 +60,18 @@ button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
 
-.card {
-  padding: 2em;
+input[type="checkbox"] {
+  appearance: none;
+  outline: none;
+  border: 2px solid $soft-white;
+  border-radius: 0.5em;
+  width: 2em;
+  height: 2em;
+  vertical-align: middle;
+  &:checked {
+    background-color: $white;
+    border-color: $white;
+  }
 }
 
 #app {
@@ -79,5 +92,15 @@ button:focus-visible {
   }
   button {
     background-color: $soft-white;
+  }
+  button:hover {
+    border-color: $soft-black;
+  }
+  input[type="checkbox"] {
+    border-color: $soft-black;
+    &:checked {
+      background-color: $black;
+      border-color: $black;
+    }
   }
 }

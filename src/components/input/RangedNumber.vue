@@ -16,25 +16,41 @@ const props = defineProps({
   },
 });
 
-// ...
+function plus() {
+  model.value = (model.value || 0) + 1;
+}
+function minus() {
+  model.value = (model.value || 0) - 1;
+}
+function selectInput(event: MouseEvent) {
+  // @ts-ignore
+  if (event.target && event.target.select) {
+    // @ts-ignore
+    event.target.select();
+  }
+}
 </script>
 
 <template>
-  <div>
-    <div>
+  <div class="inputItem">
+    <div class="inputText">
       {{ props.title }}
     </div>
-    <div>
-      <input type="number" v-model="model" :min="props.min" :max="props.max" />
+    <div class="numberWrapper">
+      <button @click="plus">+</button>
+      <input
+        type="number"
+        pattern="[0-9]*"
+        v-model="model"
+        :min="props.min"
+        :max="props.max"
+        @click="selectInput"
+      />
+      <button @click="minus">−</button>
     </div>
   </div>
 </template>
 
 <style lang="scss" scoped>
-@import "../../variables.scss";
-
-$side-padding: 8px;
-$vertical-padding: 32px;
-
-// ...
+@import "./inputStyles.scss";
 </style>

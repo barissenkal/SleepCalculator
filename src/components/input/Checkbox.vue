@@ -7,26 +7,19 @@ const props = defineProps({
     required: false,
   },
 });
-
-// ...
 </script>
 
 <template>
-  <div>
-    <div>
+  <div class="inputItem">
+    <div class="inputText">
       {{ props.title }}
     </div>
-    <div>
+    <div class="checkboxWrapper">
       <input type="checkbox" v-model="model" />
     </div>
   </div>
 </template>
 
 <style lang="scss" scoped>
-@import "../../variables.scss";
-
-$side-padding: 8px;
-$vertical-padding: 32px;
-
-// ...
+@import "./inputStyles.scss";
 </style>

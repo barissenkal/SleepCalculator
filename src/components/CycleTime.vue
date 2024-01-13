@@ -38,7 +38,6 @@ function getLengthText(cycle: number) {
 <style lang="scss" scoped>
 @import "../variables.scss";
 
-$side-padding: 8px;
 $vertical-padding: 32px;
 
 .cycleTime {
@@ -47,7 +46,7 @@ $vertical-padding: 32px;
   .cycle {
     font-size: 1em;
     line-height: 1em;
-    padding: $side-padding;
+    padding: $side-padding/2 $side-padding;
   }
   .date {
     font-size: 3em;

@@ -20,48 +20,19 @@ watch(model, (value) => {
 watch(wakeUpTimeString, (dateString) => {
   model.value = parseTimeString(dateString);
 });
-
-// ...
 </script>
 
 <template>
-  <div>
-    <div>
+  <div class="inputItem">
+    <div class="inputText">
       {{ props.title }}
     </div>
-    <div>
+    <div class="timeWrapper">
       <input type="time" v-model="wakeUpTimeString" />
     </div>
   </div>
 </template>
 
 <style lang="scss" scoped>
-@import "../../variables.scss";
-
-$side-padding: 8px;
-$vertical-padding: 32px;
-
-input[type="time"] {
-  font-size: 3em;
-  font-family: monospace;
-  font-weight: bold;
-  color: $soft-white;
-  background-color: rgba($nav-background, 0.8);
-  border-radius: 0.5em;
-  padding: 0.2em 0.4em;
-  border: none;
-  &:focus {
-    outline: none;
-    color: $white;
-  }
-}
-@media (prefers-color-scheme: light) {
-  input[type="time"] {
-    color: $soft-black;
-    background-color: rgba(invert($nav-background), 0.8);
-    &:focus {
-      color: $black;
-    }
-  }
-}
+@import "./inputStyles.scss";
 </style>

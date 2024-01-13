@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref } from "vue";
-import SwitchInput from "../components/input/Switch.vue";
+import CheckboxInput from "../components/input/Checkbox.vue";
 import RangedNumberInput from "../components/input/RangedNumber.vue";
 import TimeInput from "../components/input/Time.vue";
 import type { SettingsObject } from "../utils/settings";
@@ -24,12 +24,19 @@ async function resetButton() {
 </script>
 
 <template>
-  <h1 class="header">Settings</h1>
-  <div class="settings">
-    <SwitchInput
+  <h1>Settings</h1>
+
+  <div class="settingsBox">
+    <CheckboxInput
       v-model="currentSettings.TwentyFourHour"
       title="24 Hour Clock"
     />
+    <CheckboxInput
+      v-model="currentSettings.CycleClock"
+      title="Cycle Sleep Duration"
+    />
+  </div>
+  <div class="settingsBox">
     <RangedNumberInput
       v-model="currentSettings.TimeToFallAsleep"
       :min="0"
@@ -42,6 +49,8 @@ async function resetButton() {
       :max="120"
       title="Sleep Cycle Length"
     />
+  </div>
+  <div class="settingsBox">
     <RangedNumberInput
       v-model="currentSettings.CycleCountStart"
       :min="1"
@@ -60,12 +69,11 @@ async function resetButton() {
       :max="10"
       title="Cycle Count Target"
     />
-    <TimeInput v-model="currentSettings.IdealWakeUp" title="Ideal Wake Up" />
-    <SwitchInput
-      v-model="currentSettings.CycleClock"
-      title="Cycle Sleep Duration"
-    />
   </div>
+  <div class="settingsBox">
+    <TimeInput v-model="currentSettings.IdealWakeUp" title="Ideal Wake Up" />
+  </div>
+
   <div class="editBar">
     <button
       class="editButton"
@@ -92,14 +100,7 @@ async function resetButton() {
 
 <style lang="scss" scoped>
 @import "../variables.scss";
-
-$side-padding: 8px;
-
-.header {
-  padding: 0 $side-padding;
-  text-align: start;
-  font-size: 40px;
-}
+@import "../components/input/inputStyles.scss";
 
 .editBar {
   position: fixed;
@@ -128,6 +129,21 @@ $side-padding: 8px;
     &.updating, // NOTE: On iOS Safari, tapping a button does not change it to the 'active' state.
     &:active {
       background-color: rgba($white, 0.1);
+    }
+  }
+}
+
+@media (prefers-color-scheme: light) {
+  .editBar {
+    .editButton {
+      color: $soft-black;
+      border-top-color: rgba($black, 0.1);
+      border-left-color: rgba($black, 0.1);
+      border-right-color: rgba($black, 0.1);
+      border-bottom-color: rgba($black, 0.1);
+      &:active {
+        background-color: rgba($black, 0.1);
+      }
     }
   }
 }

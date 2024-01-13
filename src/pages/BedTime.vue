@@ -33,7 +33,7 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <h1 class="header">Time to Go to Bed</h1>
+  <h1>Time to Go to Bed</h1>
   <div class="bedTimes">
     <CycleTime
       v-for="item in bedTimes"
@@ -48,14 +48,6 @@ onUnmounted(() => {
 
 <style lang="scss" scoped>
 @import "../variables.scss";
-
-$side-padding: 8px;
-
-.header {
-  padding: 0 $side-padding;
-  text-align: start;
-  font-size: 40px;
-}
 
 .datePickerBar {
   position: fixed;
