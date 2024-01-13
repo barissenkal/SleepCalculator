@@ -46,7 +46,7 @@ $vertical-padding: 32px;
   .cycle {
     font-size: 1em;
     line-height: 1em;
-    padding: $side-padding/2 $side-padding;
+    padding: calc($side-padding/2) $side-padding;
   }
   .date {
     font-size: 3em;
