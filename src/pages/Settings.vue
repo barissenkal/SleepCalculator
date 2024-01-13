@@ -6,6 +6,7 @@ import TimeInput from "../components/input/Time.vue";
 import type { SettingsObject } from "../utils/settings";
 import settings from "../utils/settings";
 import { updateFormatters } from "../utils/format";
+import { updateDarkerMode } from "../utils/darkerMode";
 
 const currentSettings = ref<SettingsObject>(settings.getSettings());
 
@@ -15,63 +16,69 @@ const resetActive = ref<boolean>(false);
 async function saveButton() {
   settings.updateSettings(currentSettings.value);
   updateFormatters();
+  updateDarkerMode();
 }
 async function resetButton() {
   settings.resetSettings();
   updateFormatters();
+  updateDarkerMode();
   currentSettings.value = settings.getSettings();
 }
 </script>
 
 <template>
-  <h1>Settings</h1>
-
-  <div class="settingsBox">
-    <CheckboxInput
-      v-model="currentSettings.TwentyFourHour"
-      title="24 Hour Clock"
-    />
-    <CheckboxInput
-      v-model="currentSettings.CycleClock"
-      title="Cycle Sleep Duration"
-    />
-  </div>
-  <div class="settingsBox">
-    <RangedNumberInput
-      v-model="currentSettings.TimeToFallAsleep"
-      :min="0"
-      :max="60"
-      title="Time to Fall Asleep"
-    />
-    <RangedNumberInput
-      v-model="currentSettings.SleepCycleLength"
-      :min="30"
-      :max="120"
-      title="Sleep Cycle Length"
-    />
-  </div>
-  <div class="settingsBox">
-    <RangedNumberInput
-      v-model="currentSettings.CycleCountStart"
-      :min="1"
-      :max="10"
-      title="Lowest Cycle shown"
-    />
-    <RangedNumberInput
-      v-model="currentSettings.CyclesCountEnd"
-      :min="1"
-      :max="10"
-      title="Largest Cycle Shown"
-    />
-    <RangedNumberInput
-      v-model="currentSettings.BestCycle"
-      :min="1"
-      :max="10"
-      title="Cycle Count Target"
-    />
-  </div>
-  <div class="settingsBox">
-    <TimeInput v-model="currentSettings.IdealWakeUp" title="Ideal Wake Up" />
+  <div class="settings">
+    <h1>Settings</h1>
+    <div class="settingsBox">
+      <CheckboxInput
+        v-model="currentSettings.TwentyFourHour"
+        title="24 Hour Clock"
+      />
+      <CheckboxInput
+        v-model="currentSettings.CycleClock"
+        title="Cycle Sleep Duration"
+      />
+    </div>
+    <div class="settingsBox">
+      <RangedNumberInput
+        v-model="currentSettings.TimeToFallAsleep"
+        :min="0"
+        :max="60"
+        title="Time to Fall Asleep"
+      />
+      <RangedNumberInput
+        v-model="currentSettings.SleepCycleLength"
+        :min="30"
+        :max="120"
+        title="Sleep Cycle Length"
+      />
+    </div>
+    <div class="settingsBox">
+      <RangedNumberInput
+        v-model="currentSettings.CycleCountStart"
+        :min="1"
+        :max="10"
+        title="Lowest Cycle shown"
+      />
+      <RangedNumberInput
+        v-model="currentSettings.CyclesCountEnd"
+        :min="1"
+        :max="10"
+        title="Largest Cycle Shown"
+      />
+      <RangedNumberInput
+        v-model="currentSettings.BestCycle"
+        :min="1"
+        :max="10"
+        title="Cycle Count Target"
+      />
+    </div>
+    <div class="settingsBox">
+      <TimeInput v-model="currentSettings.IdealWakeUp" title="Ideal Wake Up" />
+    </div>
+    <div class="settingsBox">
+      <CheckboxInput v-model="currentSettings.DarkerMode" title="Darker Mode" />
+    </div>
   </div>
 
   <div class="editBar">
@@ -101,6 +108,18 @@ async function resetButton() {
 <style lang="scss" scoped>
 @import "../variables.scss";
 @import "../components/input/inputStyles.scss";
+
+$extra-padding: 100px;
+
+.settings {
+  max-height: calc(
+    100vh - $extra-padding - $nav-bar-height - $nav-bar-padding-bottom
+  );
+  padding-bottom: calc(
+    $extra-padding + $nav-bar-height + $nav-bar-padding-bottom
+  );
+  overflow: scroll;
+}
 
 .editBar {
   position: fixed;
@@ -133,7 +152,7 @@ async function resetButton() {
   }
 }
 
-@media (prefers-color-scheme: light) {
+@media only print and (prefers-color-scheme: light) {
   .editBar {
     .editButton {
       color: $soft-black;

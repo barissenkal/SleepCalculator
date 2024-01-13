@@ -32,6 +32,7 @@ $vertical-padding: $side-padding * 1.2;
       background-color: rgba($nav-background, 0.8);
       border-radius: 0.5em;
       input[type="number"] {
+        color: $white;
         font-size: 1.8em;
         line-height: 1.2em;
         font-family: monospace;
@@ -93,7 +94,7 @@ $vertical-padding: $side-padding * 1.2;
   }
 }
 
-@media (prefers-color-scheme: light) {
+@media only print and (prefers-color-scheme: light) {
   .settingsBox {
     border-color: rgba($black, 0.1);
     .inputItem {

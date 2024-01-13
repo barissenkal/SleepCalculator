@@ -71,7 +71,7 @@ onUnmounted(() => {
     }
   }
 }
-@media (prefers-color-scheme: light) {
+@media only print and (prefers-color-scheme: light) {
   .datePickerBar {
     input[type="time"] {
       color: $soft-black;

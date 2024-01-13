@@ -1,4 +1,7 @@
-<script setup></script>
+<script setup lang="ts">
+import { updateDarkerMode } from "./utils/darkerMode";
+updateDarkerMode();
+</script>
 
 <template>
   <router-view></router-view>
@@ -45,7 +48,7 @@
     }
   }
 }
-@media (prefers-color-scheme: light) {
+@media only print and (prefers-color-scheme: light) {
   .nav-bar {
     background-color: invert($nav-background);
     .nav-item {

@@ -73,7 +73,7 @@ $vertical-padding: 32px;
   }
 }
 
-@media (prefers-color-scheme: light) {
+@media only print and (prefers-color-scheme: light) {
   .cycleTime {
     &.best {
       color: $black;

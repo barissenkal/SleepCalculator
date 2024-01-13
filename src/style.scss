@@ -77,12 +77,15 @@ input[type="checkbox"] {
 #app {
   margin: 0 auto;
   padding-top: env(safe-area-inset-top);
-  padding-bottom: calc(2rem + $nav-bar-height + $nav-bar-padding-bottom);
+  padding-bottom: env(safe-area-inset-bottom);
   text-align: center;
   -webkit-overflow-scrolling: touch;
+  &.darker {
+    opacity: 0.5;
+  }
 }
 
-@media (prefers-color-scheme: light) {
+@media only print and (prefers-color-scheme: light) {
   :root {
     color: $soft-black;
     background-color: $white;

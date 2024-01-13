@@ -9,6 +9,7 @@ enum SettingKeys {
   TwentyFourHour = "TwentyFourHour",
   BestCycle = "BestCycle",
   CycleClock = "CycleClock",
+  DarkerMode = "DarkerMode",
 }
 
 export type SettingsObject = {
@@ -20,6 +21,7 @@ export type SettingsObject = {
   [SettingKeys.TwentyFourHour]: boolean;
   [SettingKeys.BestCycle]: number;
   [SettingKeys.CycleClock]: boolean;
+  [SettingKeys.DarkerMode]: boolean;
 };
 
 const DEFAULT_SETTINGS: Readonly<SettingsObject> = Object.freeze({
@@ -31,6 +33,7 @@ const DEFAULT_SETTINGS: Readonly<SettingsObject> = Object.freeze({
   [SettingKeys.TwentyFourHour]: true,
   [SettingKeys.BestCycle]: 5,
   [SettingKeys.CycleClock]: false,
+  [SettingKeys.DarkerMode]: false,
 });
 
 let tempSettings: SettingsObject | null = null;
