@@ -59,6 +59,10 @@ function resetButton() {
       title="Cycle Count Target"
     />
     <TimeInput v-model="currentSettings.IdealWakeUp" title="Ideal Wake Up" />
+    <SwitchInput
+      v-model="currentSettings.CycleClock"
+      title="Cycle Sleep Duration"
+    />
   </div>
   <div class="editBar">
     <div class="saveButton" @click="saveButton">Save</div>

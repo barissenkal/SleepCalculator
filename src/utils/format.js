@@ -29,3 +29,20 @@ export function updateFormatters() {
 export function formatTime(date) {
   return timeFormatter.format(date);
 }
+
+/**
+ * @param {number} totalMinutes
+ * @returns {string}
+ */
+export function formatHours(totalMinutes) {
+  const hours = Math.floor(totalMinutes / 60);
+  const minutes = totalMinutes - hours * 60;
+
+  let formattedTime = `${hours}h`;
+
+  if (minutes > 0) {
+    formattedTime += ` ${minutes}m`;
+  }
+
+  return formattedTime;
+}

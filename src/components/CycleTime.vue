@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { CycleItem } from "../enums";
 import settings from "../utils/settings";
-import { formatTime } from "../utils/format";
+import { formatHours, formatTime } from "../utils/format";
 import { PropType } from "vue";
 
 const props = defineProps({
@@ -11,12 +11,19 @@ const props = defineProps({
   },
 });
 
-const BestCycle = settings.getSettings().BestCycle;
+const { BestCycle, CycleClock, SleepCycleLength } = settings.getSettings();
+
+function getLengthText(cycle: number) {
+  return formatHours(cycle * SleepCycleLength);
+}
 </script>
 
 <template>
   <div class="cycleTime" :class="{ best: props.item.cycle == BestCycle }">
-    <div class="cycle">{{ props.item.cycle }} CYCLES</div>
+    <div class="cycle">
+      {{ props.item.cycle }} CYCLES
+      <span v-if="CycleClock">({{ getLengthText(props.item.cycle) }})</span>
+    </div>
     <div class="date">{{ formatTime(props.item.date) }}</div>
   </div>
 </template>
