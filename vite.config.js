@@ -1,3 +1,4 @@
+import path from 'path'
 import { defineConfig } from "vite";
 import vue from "@vitejs/plugin-vue";
 import { VitePWA } from "vite-plugin-pwa";
@@ -6,6 +7,9 @@ import { VitePWA } from "vite-plugin-pwa";
 export default defineConfig({
   server: {
     port: 5000,
+  },
+  build: {
+    outDir: path.resolve(__dirname, 'docs/'),
   },
   base: "/SleepCalculator",
   plugins: [
