@@ -12,14 +12,12 @@ const props = defineProps({
   },
 });
 
-const wakeUpTimeString = ref<string>(getTimeString(model.value | 0));
+const wakeUpTimeString = ref<string>(getTimeString(model.value || 0));
 
 watch(model, (value) => {
-  // console.log("model", value);
-  wakeUpTimeString.value = getTimeString(value | 0);
+  wakeUpTimeString.value = getTimeString(value || 0);
 });
 watch(wakeUpTimeString, (dateString) => {
-  // console.log("wakeUpTimeString", dateString);
   model.value = parseTimeString(dateString);
 });
 

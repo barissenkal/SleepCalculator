@@ -9,12 +9,14 @@ import { updateFormatters } from "../utils/format";
 
 const currentSettings = ref<SettingsObject>(settings.getSettings());
 
-function saveButton() {
-  // console.log("currentSettings", JSON.stringify(currentSettings.value));
+const saveActive = ref<boolean>(false);
+const resetActive = ref<boolean>(false);
+
+async function saveButton() {
   settings.updateSettings(currentSettings.value);
   updateFormatters();
 }
-function resetButton() {
+async function resetButton() {
   settings.resetSettings();
   updateFormatters();
   currentSettings.value = settings.getSettings();
@@ -65,8 +67,26 @@ function resetButton() {
     />
   </div>
   <div class="editBar">
-    <div class="saveButton" @click="saveButton">Save</div>
-    <div class="resetButton" @click="resetButton">Reset</div>
+    <button
+      class="editButton"
+      :class="{ updating: saveActive }"
+      @click="saveButton"
+      :disabled="resetActive"
+      @touchstart="saveActive = true"
+      @touchend="saveActive = false"
+    >
+      Save
+    </button>
+    <button
+      class="editButton"
+      :class="{ updating: resetActive }"
+      @click="resetButton"
+      :disabled="saveActive"
+      @touchstart="resetActive = true"
+      @touchend="resetActive = false"
+    >
+      Reset
+    </button>
   </div>
 </template>
 
@@ -86,14 +106,29 @@ $side-padding: 8px;
   bottom: 0;
   left: 0;
   right: 0;
-  padding-top: 8px;
-  padding-bottom: calc(12px + $nav-bar-height + $nav-bar-padding-bottom);
+  padding-bottom: calc($nav-bar-height + $nav-bar-padding-bottom);
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
   align-items: center;
-  .saveButton {
-  }
-  .resetButton {
+  .editButton {
+    padding: 12px;
+    flex-grow: 1;
+    color: $soft-white;
+    border-radius: 0;
+    border-top: 2px solid rgba($white, 0.1);
+    border-left: 1px solid rgba($white, 0.1);
+    border-right: 1px solid rgba($white, 0.1);
+    border-bottom: 2px solid rgba($white, 0.1);
+    &:first-child {
+      border-left: none;
+    }
+    &:last-child {
+      border-right: none;
+    }
+    &.updating, // NOTE: On iOS Safari, tapping a button does not change it to the 'active' state.
+    &:active {
+      background-color: rgba($white, 0.1);
+    }
   }
 }
 </style>
