@@ -28,7 +28,7 @@ watch(wakeUpTimeString, (dateString) => {
       {{ props.title }}
     </div>
     <div class="timeWrapper">
-      <input type="time" v-model="wakeUpTimeString" />
+      <input type="time" step="300" v-model="wakeUpTimeString" />
     </div>
   </div>
 </template>

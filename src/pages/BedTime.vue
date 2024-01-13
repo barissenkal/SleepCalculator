@@ -42,7 +42,7 @@ onUnmounted(() => {
     ></CycleTime>
   </div>
   <div class="datePickerBar">
-    <input type="time" v-model="wakeUpTimeString" />
+    <input type="time" step="300" v-model="wakeUpTimeString" />
   </div>
 </template>
 
