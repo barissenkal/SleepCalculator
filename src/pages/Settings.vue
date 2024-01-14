@@ -36,7 +36,7 @@ async function resetButton() {
       />
       <CheckboxInput
         v-model="currentSettings.CycleClock"
-        title="Cycle Sleep Duration"
+        title="Tap for Sleep Duration"
       />
     </div>
     <div class="settingsBox">

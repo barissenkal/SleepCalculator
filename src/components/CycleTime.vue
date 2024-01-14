@@ -1,8 +1,9 @@
 <script setup lang="ts">
+import { PropType } from "vue";
 import type { CycleItem } from "../enums";
 import settings from "../utils/settings";
 import { formatHours, formatTime } from "../utils/format";
-import { PropType } from "vue";
+import { cycleCountToSleepDurationToggle } from "./shared";
 
 const props = defineProps({
   item: {
@@ -26,10 +27,13 @@ function getLengthText(cycle: number) {
   <div
     class="cycleTime"
     :class="{ best: props.item.cycle == BestCycle, unavailable: unavailable }"
+    @click="cycleCountToSleepDurationToggle = !cycleCountToSleepDurationToggle"
   >
     <div class="cycle">
-      {{ props.item.cycle }} CYCLES
-      <span v-if="CycleClock">({{ getLengthText(props.item.cycle) }})</span>
+      <span v-if="CycleClock && cycleCountToSleepDurationToggle">
+        {{ getLengthText(props.item.cycle) }}
+      </span>
+      <span v-else>{{ props.item.cycle }} CYCLES</span>
     </div>
     <div class="date">{{ formatTime(props.item.date) }}</div>
   </div>
