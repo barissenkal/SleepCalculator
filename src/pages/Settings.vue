@@ -60,18 +60,18 @@ async function resetButton() {
       <RangedNumberInput
         v-model="currentSettings.CycleCountStart"
         :min="1"
-        :max="10"
+        :max="currentSettings.CyclesCountEnd"
         title="Lowest Cycle shown"
       />
       <RangedNumberInput
         v-model="currentSettings.CyclesCountEnd"
-        :min="1"
+        :min="currentSettings.CycleCountStart"
         :max="10"
         title="Largest Cycle Shown"
       />
       <RangedNumberInput
         v-model="currentSettings.BestCycle"
-        :min="1"
+        :min="0"
         :max="10"
         title="Cycle Count Target"
       />

@@ -1,5 +1,9 @@
 <script setup lang="ts">
-const model = defineModel<number>();
+import { ref, watch } from "vue";
+
+const model = defineModel<number>({
+  required: true,
+});
 
 const props = defineProps({
   title: {
@@ -16,17 +20,36 @@ const props = defineProps({
   },
 });
 
+// Internal ref for better controlling updates to model.
+const num = ref<number>(model.value);
+
+// Update internal value on model changes. (No range limit check)
+watch(model, (value) => (num.value = value));
+
 function plus() {
-  model.value = (model.value || 0) + 1;
+  num.value++;
+  limitNumAndUpdateModel();
 }
 function minus() {
-  model.value = (model.value || 0) - 1;
+  num.value--;
+  limitNumAndUpdateModel();
 }
+
 function selectInput(event: MouseEvent) {
   // @ts-ignore
   if (event.target && event.target.select) {
     // @ts-ignore
     event.target.select();
+  }
+}
+
+function limitNumAndUpdateModel() {
+  if (props.max != null && num.value > props.max) {
+    model.value = num.value = props.max;
+  } else if (props.min != null && num.value < props.min) {
+    model.value = num.value = props.min;
+  } else {
+    model.value = num.value;
   }
 }
 </script>
@@ -41,9 +64,10 @@ function selectInput(event: MouseEvent) {
       <input
         type="number"
         pattern="[0-9]*"
-        v-model="model"
+        v-model="num"
         :min="props.min"
         :max="props.max"
+        @change="limitNumAndUpdateModel()"
         @click="selectInput"
       />
       <button @click="minus">−</button>
