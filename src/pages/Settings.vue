@@ -109,12 +109,17 @@ async function resetButton() {
 @import "../scss/variables.scss";
 @import "../scss/mixins.scss";
 
-@import "../components/input/common.scss";
-
 $extra-padding: 48px;
 
 .settings {
   @include pageContent($extra-padding);
+  .settingsBox {
+    width: calc(100vw - $side-padding * 2);
+    border-radius: 20px;
+    overflow: hidden;
+    border: 1px solid rgba($white, 0.1);
+    margin: 0 $side-padding $side-padding * 1.2;
+  }
 }
 
 .editBar {
@@ -149,6 +154,11 @@ $extra-padding: 48px;
 }
 
 @media only print and (prefers-color-scheme: light) {
+  .settings {
+    .settingsBox {
+      border-color: rgba($black, 0.1);
+    }
+  }
   .editBar {
     .editButton {
       color: $soft-black;
