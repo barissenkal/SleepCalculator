@@ -109,16 +109,19 @@ async function resetButton() {
 @import "../variables.scss";
 @import "../components/input/inputStyles.scss";
 
-$extra-padding: 100px;
+$extra-padding: 48px;
+$padding-top: env(safe-area-inset-top);
+$padding-bottom: calc(
+  $extra-padding + $nav-bar-height + $nav-bar-padding-bottom
+);
 
 .settings {
-  max-height: calc(
-    100vh - $extra-padding - $nav-bar-height - $nav-bar-padding-bottom
-  );
-  padding-bottom: calc(
-    $extra-padding + $nav-bar-height + $nav-bar-padding-bottom
-  );
-  overflow: scroll;
+  width: 100vw;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  height: calc(100vh - ($padding-top + $padding-bottom));
+  padding-top: $padding-top;
+  padding-bottom: $padding-bottom;
 }
 
 .editBar {
