@@ -106,22 +106,15 @@ async function resetButton() {
 </template>
 
 <style lang="scss" scoped>
-@import "../variables.scss";
-@import "../components/input/inputStyles.scss";
+@import "../scss/variables.scss";
+@import "../scss/mixins.scss";
+
+@import "../components/input/common.scss";
 
 $extra-padding: 48px;
-$margin-top: env(safe-area-inset-top);
-$padding-bottom: calc(
-  $extra-padding + $nav-bar-height + $nav-bar-padding-bottom
-);
 
 .settings {
-  width: 100vw;
-  overflow-x: hidden;
-  overflow-y: scroll;
-  height: calc(100vh - ($margin-top + $padding-bottom));
-  margin-top: $margin-top;
-  padding-bottom: $padding-bottom;
+  @include pageContent($extra-padding);
 }
 
 .editBar {

@@ -40,7 +40,7 @@ function getLengthText(cycle: number) {
 </template>
 
 <style lang="scss" scoped>
-@import "../variables.scss";
+@import "../scss/variables.scss";
 
 $vertical-padding: 32px;
 

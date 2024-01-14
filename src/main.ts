@@ -1,7 +1,7 @@
 import { createApp } from "vue";
 import { createRouter, createWebHashHistory } from "vue-router";
 
-import "./style.scss";
+import "./scss/style.scss";
 
 import App from "./App.vue";
 const app = createApp(App);

@@ -47,7 +47,8 @@ onUnmounted(() => {
 </template>
 
 <style lang="scss" scoped>
-@import "../variables.scss";
+@import "../scss/variables.scss";
+@import "../scss/mixins.scss";
 
 $extra-padding: 102px;
 $margin-top: env(safe-area-inset-top);
@@ -56,12 +57,7 @@ $padding-bottom: calc(
 );
 
 .bedTimes {
-  width: 100vw;
-  overflow-x: hidden;
-  overflow-y: scroll;
-  height: calc(100vh - ($margin-top + $padding-bottom));
-  margin-top: $margin-top;
-  padding-bottom: $padding-bottom;
+  @include pageContent($extra-padding);
 }
 
 .datePickerBar {

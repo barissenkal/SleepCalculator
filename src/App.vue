@@ -19,7 +19,7 @@ updateDarkerMode();
 </template>
 
 <style lang="scss" scoped>
-@import "./variables.scss";
+@import "./scss/variables.scss";
 
 .nav-bar {
   position: fixed;

@@ -1,0 +1,15 @@
+@import "./variables.scss";
+
+@mixin pageContent($extra-padding) {
+  $margin-top: env(safe-area-inset-top);
+  $padding-bottom: calc(
+    $extra-padding + $nav-bar-height + $nav-bar-padding-bottom
+  );
+
+  width: 100vw;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  height: calc(100vh - ($margin-top + $padding-bottom));
+  margin-top: $margin-top;
+  padding-bottom: $padding-bottom;
+}
