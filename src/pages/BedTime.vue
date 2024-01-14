@@ -33,8 +33,8 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <h1>Time to Go to Bed</h1>
   <div class="bedTimes">
+    <h1>Time to Go to Bed</h1>
     <CycleTime
       v-for="item in bedTimes"
       :item="item"
@@ -47,7 +47,18 @@ onUnmounted(() => {
 </template>
 
 <style lang="scss" scoped>
-@import "../variables.scss";
+@import "../scss/variables.scss";
+@import "../scss/mixins.scss";
+
+$extra-padding: 102px;
+$margin-top: env(safe-area-inset-top);
+$padding-bottom: calc(
+  $extra-padding + $nav-bar-height + $nav-bar-padding-bottom
+);
+
+.bedTimes {
+  @include pageContent($extra-padding);
+}
 
 .datePickerBar {
   position: fixed;

@@ -32,7 +32,7 @@ const DEFAULT_SETTINGS: Readonly<SettingsObject> = Object.freeze({
   [SettingKeys.IdealWakeUp]: 600, // 10:00
   [SettingKeys.TwentyFourHour]: true,
   [SettingKeys.BestCycle]: 5,
-  [SettingKeys.CycleClock]: false,
+  [SettingKeys.CycleClock]: true,
   [SettingKeys.DarkerMode]: false,
 });
 

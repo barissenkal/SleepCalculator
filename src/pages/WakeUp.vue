@@ -18,12 +18,18 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <h1>Time to Wake Up</h1>
   <div class="wakeUpTimes">
+    <h1>Time to Wake Up</h1>
     <CycleTime v-for="item in wakeUpTimes" :item="item"></CycleTime>
   </div>
 </template>
 
 <style lang="scss" scoped>
-@import "../variables.scss";
+@import "../scss/mixins.scss";
+
+$extra-padding: 20px;
+
+.wakeUpTimes {
+  @include pageContent($extra-padding);
+}
 </style>

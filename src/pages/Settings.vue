@@ -36,8 +36,11 @@ async function resetButton() {
       />
       <CheckboxInput
         v-model="currentSettings.CycleClock"
-        title="Cycle Sleep Duration"
+        title="Tap for Sleep Duration"
       />
+    </div>
+    <div class="settingsBox">
+      <TimeInput v-model="currentSettings.IdealWakeUp" title="Ideal Wake Up" />
     </div>
     <div class="settingsBox">
       <RangedNumberInput
@@ -57,24 +60,21 @@ async function resetButton() {
       <RangedNumberInput
         v-model="currentSettings.CycleCountStart"
         :min="1"
-        :max="10"
+        :max="currentSettings.CyclesCountEnd"
         title="Lowest Cycle shown"
       />
       <RangedNumberInput
         v-model="currentSettings.CyclesCountEnd"
-        :min="1"
+        :min="currentSettings.CycleCountStart"
         :max="10"
         title="Largest Cycle Shown"
       />
       <RangedNumberInput
         v-model="currentSettings.BestCycle"
-        :min="1"
+        :min="0"
         :max="10"
         title="Cycle Count Target"
       />
-    </div>
-    <div class="settingsBox">
-      <TimeInput v-model="currentSettings.IdealWakeUp" title="Ideal Wake Up" />
     </div>
     <div class="settingsBox">
       <CheckboxInput v-model="currentSettings.DarkerMode" title="Darker Mode" />
@@ -106,19 +106,20 @@ async function resetButton() {
 </template>
 
 <style lang="scss" scoped>
-@import "../variables.scss";
-@import "../components/input/inputStyles.scss";
+@import "../scss/variables.scss";
+@import "../scss/mixins.scss";
 
-$extra-padding: 100px;
+$extra-padding: 48px;
 
 .settings {
-  max-height: calc(
-    100vh - $extra-padding - $nav-bar-height - $nav-bar-padding-bottom
-  );
-  padding-bottom: calc(
-    $extra-padding + $nav-bar-height + $nav-bar-padding-bottom
-  );
-  overflow: scroll;
+  @include pageContent($extra-padding);
+  .settingsBox {
+    width: calc(100vw - $side-padding * 2);
+    border-radius: 20px;
+    overflow: hidden;
+    border: 1px solid rgba($white, 0.1);
+    margin: 0 $side-padding $side-padding * 1.2;
+  }
 }
 
 .editBar {
@@ -153,6 +154,11 @@ $extra-padding: 100px;
 }
 
 @media only print and (prefers-color-scheme: light) {
+  .settings {
+    .settingsBox {
+      border-color: rgba($black, 0.1);
+    }
+  }
   .editBar {
     .editButton {
       color: $soft-black;

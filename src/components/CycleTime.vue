@@ -1,8 +1,9 @@
 <script setup lang="ts">
+import { PropType } from "vue";
 import type { CycleItem } from "../enums";
 import settings from "../utils/settings";
 import { formatHours, formatTime } from "../utils/format";
-import { PropType } from "vue";
+import { cycleCountToSleepDurationToggle } from "./shared";
 
 const props = defineProps({
   item: {
@@ -26,17 +27,20 @@ function getLengthText(cycle: number) {
   <div
     class="cycleTime"
     :class="{ best: props.item.cycle == BestCycle, unavailable: unavailable }"
+    @click="cycleCountToSleepDurationToggle = !cycleCountToSleepDurationToggle"
   >
     <div class="cycle">
-      {{ props.item.cycle }} CYCLES
-      <span v-if="CycleClock">({{ getLengthText(props.item.cycle) }})</span>
+      <span v-if="CycleClock && cycleCountToSleepDurationToggle">
+        {{ getLengthText(props.item.cycle) }}
+      </span>
+      <span v-else>{{ props.item.cycle }} CYCLES</span>
     </div>
     <div class="date">{{ formatTime(props.item.date) }}</div>
   </div>
 </template>
 
 <style lang="scss" scoped>
-@import "../variables.scss";
+@import "../scss/variables.scss";
 
 $vertical-padding: 32px;
 
@@ -65,11 +69,10 @@ $vertical-padding: 32px;
     }
   }
   &.unavailable {
-    opacity: 0.25;
-    color: rgba(red, $soft-transparency);
+    color: rgba(red, $ghost-transparency);
   }
   &.best.unavailable {
-    color: red;
+    color: rgba(red, $soft-transparency);
   }
 }
 
