@@ -40,6 +40,9 @@ async function resetButton() {
       />
     </div>
     <div class="settingsBox">
+      <TimeInput v-model="currentSettings.IdealWakeUp" title="Ideal Wake Up" />
+    </div>
+    <div class="settingsBox">
       <RangedNumberInput
         v-model="currentSettings.TimeToFallAsleep"
         :min="0"
@@ -72,9 +75,6 @@ async function resetButton() {
         :max="10"
         title="Cycle Count Target"
       />
-    </div>
-    <div class="settingsBox">
-      <TimeInput v-model="currentSettings.IdealWakeUp" title="Ideal Wake Up" />
     </div>
     <div class="settingsBox">
       <CheckboxInput v-model="currentSettings.DarkerMode" title="Darker Mode" />
