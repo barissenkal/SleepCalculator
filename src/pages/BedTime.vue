@@ -50,7 +50,7 @@ onUnmounted(() => {
 @import "../variables.scss";
 
 $extra-padding: 102px;
-$padding-top: env(safe-area-inset-top);
+$margin-top: env(safe-area-inset-top);
 $padding-bottom: calc(
   $extra-padding + $nav-bar-height + $nav-bar-padding-bottom
 );
@@ -59,8 +59,8 @@ $padding-bottom: calc(
   width: 100vw;
   overflow-x: hidden;
   overflow-y: scroll;
-  height: calc(100vh - ($padding-top + $padding-bottom));
-  padding-top: $padding-top;
+  height: calc(100vh - ($margin-top + $padding-bottom));
+  margin-top: $margin-top;
   padding-bottom: $padding-bottom;
 }
 
