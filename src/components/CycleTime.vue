@@ -65,11 +65,10 @@ $vertical-padding: 32px;
     }
   }
   &.unavailable {
-    opacity: 0.25;
-    color: rgba(red, $soft-transparency);
+    color: rgba(red, $ghost-transparency);
   }
   &.best.unavailable {
-    color: red;
+    color: rgba(red, $soft-transparency);
   }
 }
 
