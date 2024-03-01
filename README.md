@@ -1,7 +1,19 @@
-# Vue 3 + Vite
+# Sleep Calculator
 
-This template should help get you started developing with Vue 3 in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+Hosted at [barissenkal.com/SleepCalculator/](https://barissenkal.com/SleepCalculator/)
 
-## Recommended IDE Setup
+### Summary:
+- Static Single Page Application
+- Works Offline[^1].
+- Can be add as a Home Screen Web App[^2].
+- Settings page with:
+  - Time to Fall Asleep
+  - Sleep Cycle Length
+  - Ideal Wake Up
+  - "Darker Mode"
 
-- [VS Code](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
+
+Developed with [Vue 3](https://vuejs.org/) and [Vite](https://vitejs.dev/).
+
+[^1]: Basic [VitePWA](https://github.com/vite-pwa/vite-plugin-pwa) [config](https://github.com/barissenkal/SleepCalculator/blob/gh-pages/vite.config.js).
+[^2]: [apple-mobile-web-app-capable](https://github.com/barissenkal/SleepCalculator/blob/gh-pages/index.html#:~:text=apple%2Dmobile%2Dweb%2Dapp%2Dcapable) and [manifest](https://github.com/barissenkal/SleepCalculator/blob/gh-pages/vite.config.js#:~:text=22-,manifest,-%3A).
