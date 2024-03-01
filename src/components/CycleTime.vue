@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { PropType } from "vue";
-import type { CycleItem } from "../enums";
+import type { CycleItem } from "../types";
 import settings from "../utils/settings";
 import { formatHours, formatTime } from "../utils/format";
 import { cycleCountToSleepDurationToggle } from "./shared";
@@ -84,3 +84,4 @@ $vertical-padding: 32px;
   }
 }
 </style>
+../types../types

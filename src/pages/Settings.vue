@@ -3,12 +3,11 @@ import { ref } from "vue";
 import CheckboxInput from "../components/input/Checkbox.vue";
 import RangedNumberInput from "../components/input/RangedNumber.vue";
 import TimeInput from "../components/input/Time.vue";
-import type { SettingsObject } from "../utils/settings";
 import settings from "../utils/settings";
 import { updateFormatters } from "../utils/format";
 import { updateDarkerMode } from "../utils/darkerMode";
 
-const currentSettings = ref<SettingsObject>(settings.getSettings());
+const currentSettings = ref(settings.getSettings());
 
 const saveActive = ref<boolean>(false);
 const resetActive = ref<boolean>(false);
