@@ -14,6 +14,18 @@ const DEFAULT_SETTINGS: Readonly<SettingsObject> = Object.freeze({
   [SettingKeys.DarkerMode]: false,
 });
 
+const SHORT_SETTINGS_ORDER = [
+  SettingKeys.TimeToFallAsleep,
+  SettingKeys.SleepCycleLength,
+  SettingKeys.CycleCountStart,
+  SettingKeys.CyclesCountEnd,
+  SettingKeys.IdealWakeUp,
+  SettingKeys.TwentyFourHour,
+  SettingKeys.BestCycle,
+  SettingKeys.CycleClock,
+  SettingKeys.DarkerMode,
+];
+
 let tempSettings: SettingsObject | null = null;
 
 function _fillAndGetTemp(): SettingsObject {
@@ -58,5 +70,39 @@ export default {
   },
   resetSettings() {
     this.updateSettings(DEFAULT_SETTINGS);
+  },
+  exportSettings(): string {
+    _fillAndGetTemp();
+    const shortSettingsArray = SHORT_SETTINGS_ORDER.map(
+      (key) => tempSettings![key]
+    );
+    return shortSettingsArray.join("|");
+  },
+  importSettings(shortSettings: string) {
+    const shortSettingsArray = shortSettings.split("|");
+
+    const parsedSettings = {};
+    for (let index = 0; index < shortSettingsArray.length; index++) {
+      if (
+        shortSettingsArray[index] == null ||
+        shortSettingsArray[index] == ""
+      ) {
+        console.log("Skipping value since missing or invalid");
+        continue;
+      }
+
+      const key = SHORT_SETTINGS_ORDER[index];
+      if (key == null) {
+        console.error(
+          "SHORT_SETTINGS_ORDER does not match imported settings",
+          index,
+          shortSettingsArray[index]
+        );
+        break;
+      }
+      parsedSettings[key] = JSON.parse(JSON.parse(shortSettingsArray[index]));
+    }
+
+    this.updateSettings(parsedSettings);
   },
 };
