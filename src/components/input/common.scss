@@ -84,6 +84,9 @@ $vertical-padding: $side-padding * 1.2;
       }
     }
   }
+  .shareButtonWrapper {
+    padding-right: $side-padding;
+  }
 }
 
 @media only print and (prefers-color-scheme: light) {
