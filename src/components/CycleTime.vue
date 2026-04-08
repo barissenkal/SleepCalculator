@@ -84,4 +84,3 @@ $vertical-padding: 32px;
   }
 }
 </style>
-../types../types
