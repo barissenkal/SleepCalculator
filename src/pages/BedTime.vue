@@ -47,8 +47,9 @@ onUnmounted(() => {
 </template>
 
 <style lang="scss" scoped>
-@import "../scss/variables.scss";
-@import "../scss/mixins.scss";
+@use "sass:color";
+@use "../scss/variables.scss" as *;
+@use "../scss/mixins.scss" as *;
 
 $extra-padding: 102px;
 $margin-top: env(safe-area-inset-top);
@@ -86,7 +87,7 @@ $padding-bottom: calc(
   .datePickerBar {
     input[type="time"] {
       color: $soft-black;
-      background-color: rgba(invert($nav-background), 0.8);
+      background-color: rgba(color.invert($nav-background), 0.8);
       &:focus {
         color: $black;
       }

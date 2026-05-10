@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { PropType } from "vue";
-import type { CycleItem } from "../enums";
+import type { CycleItem } from "../types";
 import settings from "../utils/settings";
 import { formatHours, formatTime } from "../utils/format";
 import { cycleCountToSleepDurationToggle } from "./shared";
@@ -40,7 +40,7 @@ function getLengthText(cycle: number) {
 </template>
 
 <style lang="scss" scoped>
-@import "../scss/variables.scss";
+@use "../scss/variables.scss" as *;
 
 $vertical-padding: 32px;
 

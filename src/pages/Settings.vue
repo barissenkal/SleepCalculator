@@ -2,13 +2,13 @@
 import { ref } from "vue";
 import CheckboxInput from "../components/input/Checkbox.vue";
 import RangedNumberInput from "../components/input/RangedNumber.vue";
+import ShareMenuInput from "../components/input/ShareMenu.vue";
 import TimeInput from "../components/input/Time.vue";
-import type { SettingsObject } from "../utils/settings";
 import settings from "../utils/settings";
 import { updateFormatters } from "../utils/format";
 import { updateDarkerMode } from "../utils/darkerMode";
 
-const currentSettings = ref<SettingsObject>(settings.getSettings());
+const currentSettings = ref(settings.getSettings());
 
 const saveActive = ref<boolean>(false);
 const resetActive = ref<boolean>(false);
@@ -79,6 +79,10 @@ async function resetButton() {
     <div class="settingsBox">
       <CheckboxInput v-model="currentSettings.DarkerMode" title="Darker Mode" />
     </div>
+
+    <!-- <div class="settingsBox">
+      <ShareMenuInput title="Export Settings" shareAction="..." />
+    </div> -->
   </div>
 
   <div class="editBar">
@@ -106,8 +110,8 @@ async function resetButton() {
 </template>
 
 <style lang="scss" scoped>
-@import "../scss/variables.scss";
-@import "../scss/mixins.scss";
+@use "../scss/variables.scss" as *;
+@use "../scss/mixins.scss" as *;
 
 $extra-padding: 48px;
 

@@ -19,7 +19,8 @@ updateDarkerMode();
 </template>
 
 <style lang="scss" scoped>
-@import "./scss/variables.scss";
+@use "sass:color";
+@use "./scss/variables.scss" as *;
 
 .nav-bar {
   position: fixed;
@@ -50,7 +51,7 @@ updateDarkerMode();
 }
 @media only print and (prefers-color-scheme: light) {
   .nav-bar {
-    background-color: invert($nav-background);
+    background-color: color.invert($nav-background);
     .nav-item {
       a {
         color: $soft-black;

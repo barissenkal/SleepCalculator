@@ -1,22 +1,22 @@
 <script setup lang="ts">
-const model = defineModel<boolean>();
-
 const props = defineProps({
   title: {
     type: String,
-    required: false,
+    required: true,
+  },
+  shareAction: {
+    type: Function,
+    required: true,
   },
 });
 </script>
 
 <template>
-  <div class="inputItem">
+  <div class="inputItem" @click="shareAction">
     <div class="inputText">
       {{ props.title }}
     </div>
-    <div class="checkboxWrapper">
-      <input type="checkbox" v-model="model" />
-    </div>
+    <div class="shareButtonWrapper">↑</div>
   </div>
 </template>
 

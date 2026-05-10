@@ -25,7 +25,7 @@ onUnmounted(() => {
 </template>
 
 <style lang="scss" scoped>
-@import "../scss/mixins.scss";
+@use "../scss/mixins.scss" as *;
 
 $extra-padding: 20px;
 
