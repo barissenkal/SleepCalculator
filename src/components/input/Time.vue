@@ -34,5 +34,5 @@ watch(wakeUpTimeString, (dateString) => {
 </template>
 
 <style lang="scss" scoped>
-@import "./common.scss";
+@use "./common.scss" as *;
 </style>

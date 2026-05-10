@@ -110,8 +110,8 @@ async function resetButton() {
 </template>
 
 <style lang="scss" scoped>
-@import "../scss/variables.scss";
-@import "../scss/mixins.scss";
+@use "../scss/variables.scss" as *;
+@use "../scss/mixins.scss" as *;
 
 $extra-padding: 48px;
 

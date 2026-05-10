@@ -1,4 +1,5 @@
-@import "../../scss/variables.scss";
+@use "sass:color";
+@use "../../scss/variables.scss" as *;
 
 $vertical-padding: $side-padding * 1.2;
 
@@ -95,12 +96,12 @@ $vertical-padding: $side-padding * 1.2;
       border-color: rgba($black, 0.1);
     }
     .numberWrapper {
-      background-color: rgba(invert($nav-background), 0.8);
+      background-color: rgba(color.invert($nav-background), 0.8);
     }
     .timeWrapper {
       input[type="time"] {
         color: $soft-black;
-        background-color: rgba(invert($nav-background), 0.8);
+        background-color: rgba(color.invert($nav-background), 0.8);
         &:focus {
           color: $black;
         }
