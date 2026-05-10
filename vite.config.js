@@ -13,15 +13,17 @@ export default defineConfig({
     VitePWA({
       registerType: "autoUpdate",
       scope: "/SleepCalculator/",
+      includeAssets: ['splash.png'],
       manifest: {
         name: "Sleep Calculator",
+        short_name: "Sleep",
         orientation: "portrait",
-        id: "/SleepCalculator",
-        start_url: "/SleepCalculator",
-        display: "standalone",
+        id: "/SleepCalculator/",
+        start_url: "/SleepCalculator/",
+        display: "fullscreen",
+        display_override: ["fullscreen", "standalone"],
         theme_color: '#000',
         background_color: '#000',
-        includeAssets: ['splash.png'],
       },
       workbox: {
         clientsClaim: true,
