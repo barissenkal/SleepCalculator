@@ -10,7 +10,6 @@ let userCount = 0;
 
 /** Shared reactive `Date` that updates once the clock moved 60+ seconds. */
 export function useMinuteNow() {
-
   onMounted(() => {
     userCount++;
     if (userCount > 1) return;

@@ -11,7 +11,11 @@ const wakeUpTimes = computed(() => getWakeUpTimes(now.value));
 <template>
   <div class="wakeUpTimes">
     <h1>Time to Wake Up</h1>
-    <CycleTime v-for="item in wakeUpTimes" :item="item"></CycleTime>
+    <CycleTime
+      v-for="item in wakeUpTimes"
+      :key="item.cycle"
+      :item="item"
+    ></CycleTime>
   </div>
 </template>
 

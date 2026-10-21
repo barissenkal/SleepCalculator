@@ -13,7 +13,7 @@ export default defineConfig({
     VitePWA({
       registerType: "autoUpdate",
       scope: "/SleepCalculator/",
-      includeAssets: ['splash.png', 'icon-192.png', 'icon-512.png'],
+      includeAssets: ["splash.png", "icon-192.png", "icon-512.png"],
       manifest: {
         name: "Sleep Calculator",
         short_name: "Sleep Calc",
@@ -22,8 +22,8 @@ export default defineConfig({
         start_url: "/SleepCalculator/",
         display: "fullscreen",
         display_override: ["fullscreen", "standalone"],
-        theme_color: '#000',
-        background_color: '#000',
+        theme_color: "#000",
+        background_color: "#000",
         icons: [
           {
             src: "/SleepCalculator/icon-192.png",
@@ -41,7 +41,7 @@ export default defineConfig({
         clientsClaim: true,
         skipWaiting: true,
         cleanupOutdatedCaches: true,
-      }
+      },
     }),
   ],
 });

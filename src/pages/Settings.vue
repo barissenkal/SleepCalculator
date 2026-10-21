@@ -2,7 +2,7 @@
 import { ref } from "vue";
 import CheckboxInput from "../components/input/Checkbox.vue";
 import RangedNumberInput from "../components/input/RangedNumber.vue";
-import ShareMenuInput from "../components/input/ShareMenu.vue";
+// import ShareMenuInput from "../components/input/ShareMenu.vue";
 import TimeInput from "../components/input/Time.vue";
 import settings from "../utils/settings";
 import { updateFormatters } from "../utils/format";

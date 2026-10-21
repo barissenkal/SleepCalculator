@@ -15,6 +15,7 @@ const now = useMinuteNow();
 const wakeUpTimeString = ref<string>(getTimeString(IdealWakeUp));
 
 const bedTimes = computed(() => {
+  // eslint-disable-next-line @typescript-eslint/no-unused-expressions
   now.value; // update when now changes
   return getGoToBedTimes(parseTimeString(wakeUpTimeString.value));
 });
@@ -25,6 +26,7 @@ const bedTimes = computed(() => {
     <h1>Time to Go to Bed</h1>
     <CycleTime
       v-for="item in bedTimes"
+      :key="item.cycle"
       :item="item"
       :unavailable="item.date < now"
     ></CycleTime>
