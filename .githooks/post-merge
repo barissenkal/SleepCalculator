@@ -1,0 +1,13 @@
+#!/bin/sh
+# Git ignores index changes made by pre-merge-commit, so the build would stay
+# staged but outside the merge commit. Rebuild here and rewrite the merge commit.
+set -e
+
+# Only for real merge commits (not fast-forwards).
+git reflog -1 --format=%gs | grep -q 'Merge made by' || exit 0
+
+"$(dirname "$0")/pre-commit"
+
+tree=$(git write-tree)
+new=$(git log -1 --format=%B | git commit-tree "$tree" -p HEAD^1 -p HEAD^2)
+git update-ref -m "post-merge: include build" HEAD "$new"
