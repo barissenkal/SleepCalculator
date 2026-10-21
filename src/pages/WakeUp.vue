@@ -1,16 +1,20 @@
 <script setup lang="ts">
 import { getWakeUpTimes } from "../utils/calculation";
-import { onMounted, onUnmounted } from "vue";
+import { computed, onMounted, onUnmounted, ref } from "vue";
 import CycleTime from "../components/CycleTime.vue";
 
-let wakeUpTimes = getWakeUpTimes();
+const now = ref<Date>(new Date());
+const wakeUpTimes = computed(() => getWakeUpTimes(now.value));
 
 let intervalTimerID = null;
 onMounted(() => {
   // @ts-ignore
   intervalTimerID = setInterval(() => {
-    wakeUpTimes = getWakeUpTimes();
-  }, 1000);
+    const current = new Date();
+    if (current.valueOf() - now.value.valueOf() >= 60 * 1000) {
+      now.value = current;
+    }
+  }, 500);
 });
 onUnmounted(() => {
   if (intervalTimerID) clearInterval(intervalTimerID);
