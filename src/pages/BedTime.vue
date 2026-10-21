@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, onMounted, onUnmounted, ref } from "vue";
+import { computed, ref } from "vue";
 import {
   getGoToBedTimes,
   getTimeString,
@@ -7,29 +7,16 @@ import {
 } from "../utils/calculation";
 import CycleTime from "../components/CycleTime.vue";
 import settings from "../utils/settings";
+import { useMinuteNow } from "../composables/useMinuteNow";
 
 const { IdealWakeUp } = settings.getSettings();
 
-const now = ref<Date>(new Date());
+const now = useMinuteNow();
 const wakeUpTimeString = ref<string>(getTimeString(IdealWakeUp));
 
 const bedTimes = computed(() => {
   now.value; // update when now changes
   return getGoToBedTimes(parseTimeString(wakeUpTimeString.value));
-});
-
-let intervalTimerID = null;
-onMounted(() => {
-  // @ts-ignore
-  intervalTimerID = setInterval(() => {
-    const current = new Date();
-    if (current.valueOf() - now.value.valueOf() >= 60000) {
-      now.value = current;
-    }
-  }, 500);
-});
-onUnmounted(() => {
-  if (intervalTimerID) clearInterval(intervalTimerID);
 });
 </script>
 
