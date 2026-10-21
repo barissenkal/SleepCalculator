@@ -15,7 +15,7 @@ const router = createRouter({
   routes: [
     {
       path: "/",
-      redirect: (to) => {
+      redirect: () => {
         // TODO: For Home Screen app. Get which page from saved setting...
         return { path: "/wake-up" };
       },

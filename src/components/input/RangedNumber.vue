@@ -36,10 +36,9 @@ function minus() {
 }
 
 function selectInput(event: MouseEvent) {
-  // @ts-ignore
-  if (event.target && event.target.select) {
-    // @ts-ignore
-    event.target.select();
+  const target = event.target as HTMLInputElement | null;
+  if (target && target.select) {
+    target.select();
   }
 }
 

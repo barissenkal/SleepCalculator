@@ -1,26 +1,21 @@
 <script setup lang="ts">
 import { getWakeUpTimes } from "../utils/calculation";
-import { onMounted, onUnmounted } from "vue";
+import { computed } from "vue";
 import CycleTime from "../components/CycleTime.vue";
+import { useMinuteNow } from "../composables/useMinuteNow";
 
-let wakeUpTimes = getWakeUpTimes();
-
-let intervalTimerID = null;
-onMounted(() => {
-  // @ts-ignore
-  intervalTimerID = setInterval(() => {
-    wakeUpTimes = getWakeUpTimes();
-  }, 1000);
-});
-onUnmounted(() => {
-  if (intervalTimerID) clearInterval(intervalTimerID);
-});
+const now = useMinuteNow();
+const wakeUpTimes = computed(() => getWakeUpTimes(now.value));
 </script>
 
 <template>
   <div class="wakeUpTimes">
     <h1>Time to Wake Up</h1>
-    <CycleTime v-for="item in wakeUpTimes" :item="item"></CycleTime>
+    <CycleTime
+      v-for="item in wakeUpTimes"
+      :key="item.cycle"
+      :item="item"
+    ></CycleTime>
   </div>
 </template>
 

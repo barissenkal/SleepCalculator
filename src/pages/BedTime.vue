@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { onMounted, onUnmounted, ref, watch } from "vue";
+import { computed, ref } from "vue";
 import {
   getGoToBedTimes,
   getTimeString,
@@ -7,28 +7,17 @@ import {
 } from "../utils/calculation";
 import CycleTime from "../components/CycleTime.vue";
 import settings from "../utils/settings";
+import { useMinuteNow } from "../composables/useMinuteNow";
 
 const { IdealWakeUp } = settings.getSettings();
 
-const now = ref<Date>(new Date());
+const now = useMinuteNow();
 const wakeUpTimeString = ref<string>(getTimeString(IdealWakeUp));
 
-let bedTimes = getGoToBedTimes(IdealWakeUp);
-
-watch(wakeUpTimeString, (dateString) => {
-  const totalMinutes = parseTimeString(dateString);
-  bedTimes = getGoToBedTimes(totalMinutes);
-});
-
-let intervalTimerID = null;
-onMounted(() => {
-  // @ts-ignore
-  intervalTimerID = setInterval(() => {
-    now.value = new Date();
-  }, 1000);
-});
-onUnmounted(() => {
-  if (intervalTimerID) clearInterval(intervalTimerID);
+const bedTimes = computed(() => {
+  // eslint-disable-next-line @typescript-eslint/no-unused-expressions
+  now.value; // update when now changes
+  return getGoToBedTimes(parseTimeString(wakeUpTimeString.value));
 });
 </script>
 
@@ -37,6 +26,7 @@ onUnmounted(() => {
     <h1>Time to Go to Bed</h1>
     <CycleTime
       v-for="item in bedTimes"
+      :key="item.cycle"
       :item="item"
       :unavailable="item.date < now"
     ></CycleTime>
